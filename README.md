@@ -1,4 +1,4 @@
-# Multivariate GxE Testing
+# Multivariate joint test (GGE test)
 
 ## Overview
 This repository contains the R code used for ral data analysis of lipids and alpolipoprotiens in the paper titled **"A multivariate approach to joint testing of main genetic and gene-environment interaction effects"**. The code performs joint testing of main genetic and gene-environment (GxE) effects along with other competing univariate and multivariate tests on lipid phenotypes using data from the UK Biobank.
