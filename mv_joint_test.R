@@ -4,9 +4,6 @@
 # Description: This script performs multivariate regression to evaluate combined genetic and gene-environment (GxE) effects on lipid traits using data from the UK Biobank.
 
 # Load required libraries
-# library(dplyr) # Add other required libraries
-
-# Load required libraries
 # Load genotype and phenotype data ( After all the quality control)
 
 # Main analysis steps:
