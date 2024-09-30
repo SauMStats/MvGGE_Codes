@@ -1,7 +1,8 @@
-# Multivariate Joint GGE test script for continuous phenotypes.
+# Multivariate Joint GGE test script for continuous phenotypes (lipids).
 # Title: A multivariate approach to joint testing of main genetic and gene-environment interaction effects
 # Author: Saurabh Mishra, Arunabha Majumdar
-# Description: This script performs multivariate regression to evaluate combined genetic and gene-environment (GxE) effects on lipid traits using data from the UK Biobank.
+# Description: This script performs multivariate regression to evaluate combined genetic and gene-environment (GxE) effects on lipid traits 
+# along with other competing univariate and bivariate tests using data from the UK Biobank.
 
 # Load required libraries
 # Load genotype and phenotype data ( After all the quality control)
@@ -10,7 +11,7 @@
 # 1. Extract genotype and phenotype data
 # 2. Perform the univariate and multivariate regression on models for G, GE, and GGE tests
 # 3. Compile p-values for each hypothesis under comparison for all these models.
-# 4. Compare the results of the GGE test with other competing tests.
+# 4. Compare the results of the GGE test with those of other competing tests.
 
 
 # Load required packages
