@@ -1,9 +1,25 @@
 # Multivariate Joint GGE test script for continuous phenotypes (lipids).
 # Title: A multivariate approach to joint testing of main genetic and gene-environment interaction effects
 # Author: Saurabh Mishra, Arunabha Majumdar
-# Description: This script performs multivariate regression to evaluate combined genetic and gene-environment (GxE) effects on lipid traits 
-# along with other competing univariate and bivariate tests using data from the UK Biobank.
+#--------------------------------------------------------------------------------------------------------------------#
 
+# Description:
+# This script performs real data analysis for evaluating joint genetic (G) and gene-environment interaction (GxE) 
+# effects on lipid phenotypes (HDL, LDL, triglycerides) using UK Biobank data. The environmental factor is sleep duration.
+
+# The analysis includes:
+# 1. Univariate, bivariate, and trivariate tests for:
+#    - Main genetic effects (G effects) on the phenotypes.
+#    - Gene-environment interaction effects (GxE effects), incorporating sleep duration.
+#    - Joint tests of genetic and GxE effects.
+# 2. P-values are calculated for each test scenario, including marginal genetic tests, marginal GxE tests, 
+#    and joint genetic and GxE interaction tests.
+
+# The script handles missing genotype data with imputation and standardization, 
+# and parallelizes the computations across all SNPs for efficiency.
+
+
+## Requirements:
 # Load required libraries
 # Load genotype and phenotype data ( After all the quality control)
 
@@ -13,6 +29,7 @@
 # 3. Compile p-values for each hypothesis under comparison for all these models.
 # 4. Compare the results of the GGE test with those of other competing tests.
 
+## -----------------------------------------------------------------------------------------##
 
 # Load required packages
 required_packages <- c("readr", "data.table", "parallel", "snpStats", "dplyr", "broom")
@@ -139,3 +156,43 @@ gwas_gxe_analysis <- function(snp_index, geno, phenotype_data) { # SNP index is 
 }
 
 
+## -------------------------------------------------------------------------------------------------------------- ##
+
+  ## Result's columns contain:
+                        
+# Chr: Chromosome number for the SNP.
+# BP: Base pair position of the SNP on the chromosome.
+# SNP: Name or identifier of the SNP.
+
+# pH_G: P-value for genetic effect on HDL.
+# pL_G: P-value for genetic effect on LDL.
+# pT_G: P-value for genetic effect on triglycerides.
+
+# pMV_G: P-value for multivariate genetic test across all phenotypes.
+
+# pHL_G: P-value for genetic effect on HDL and LDL.
+# pHT_G: P-value for genetic effect on HDL and triglycerides.
+# pLT_G: P-value for genetic effect on LDL and triglycerides.
+
+# pH_GE: P-value for GxE effect on HDL.
+# pL_GE: P-value for GxE effect on LDL.
+# pT_GE: P-value for GxE effect on triglycerides.
+
+# pMV_GE: P-value for multivariate GxE test across all phenotypes.
+
+# pHL_GE: P-value for GxE effect on HDL and LDL.
+# pHT_GE: P-value for GxE effect on HDL and triglycerides.
+# pLT_GE: P-value for GxE effect on LDL and triglycerides.
+
+# pH_GGE: P-value for joint G and GxE effect on HDL.
+# pL_GGE: P-value for joint G and GxE effect on LDL.
+# pT_GGE: P-value for joint G and GxE effect on triglycerides.
+
+( Our proposed ones)
+
+# pMV_GGE: P-value for multivariate joint G and GxE test across all phenotypes. 
+
+# pHL_GGE: P-value for joint G and GxE effect on HDL and LDL.
+# pHT_GGE: P-value for joint G and GxE effect on HDL and triglycerides.
+# pLT_GGE: P-value for joint G and GxE effect on LDL and triglycerides.
+         
