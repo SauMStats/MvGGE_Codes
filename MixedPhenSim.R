@@ -16,6 +16,7 @@ library(dplyr)
 # B: coefficient matrix for the linear predictors
 # mu: mean vector for multivariate normal distribution
 # S: covariance matrix for multivariate normal distribution
+
 sim.dataset.full <- function(n, p, f, B, mu, S) {
   # Simulate Genotype (G) and Environment (E) and their interaction (GE)
   simulated_data2 <- data.frame(
@@ -82,7 +83,6 @@ GEE <- function(n, response_mat, design_mat, beta, r, phi) {
     B4 <- B4 + t(Di) %*% V_inv %*% Di # Ustar Calculation for Sandwich estimator 
     # Note: Info Mat and Ustar are same in GEE. In EGEE they are different.
   }
-  
   
   VCovMat <- solve(B4 + epsi * diag(8)) %*% B2 %*% solve(B4 + epsi * diag(8))
   
@@ -300,43 +300,54 @@ power.fn <- function(n.sims, n, p, f, B, mu, S, alpha) {
     power.Y1_Y2_GGE = mean(sig.Y1_Y2.GGE, na.rm = TRUE)
   )]
   
-  return(power.sim)#power)#power)#
-  
-  
-  
+  return(power.sim)
 }
 
-###############################################################################
 
-t<-Sys.time()
-# Example usage
+# Set Seed for Reproducibility
 set.seed(12345)
-r<-0.3
+alpha <- 0.05
+
+# Define Simulation Parameters
+r <- 0.3
 mu1 <- 0; s1 <- sqrt(0.5)
 mu2 <- 0; s2 <- sqrt(0.5)
 
-# Parameters for bivariate normal distribution
-mu <- c(mu1,mu2) # Mean
-S <- matrix(c(s1^2, s1*s2*r, s1*s2*r, s2^2),
-            2) # Covariance matrix
+# Parameters for Bivariate Normal Distribution
+mu <- c(mu1, mu2) # Mean
+S <- matrix(c(s1^2, s1 * s2 * r, s1 * s2 * r, s2^2), ncol = 2) # Covariance Matrix
 
-
-n.sims <- 10#0
-n <- 100#00
+n.sims <- 1000
+n <- 1000
 p <- 0.2
 f <- 0.1
-B <- matrix(c(0.15, 0.2, 0.4, 0.15, 0.2, 0.4), ncol = 2)
-alpha <- 0.05
+B <- matrix(c(0.1, 0.15, 0.3, 0.1, 0.15, 0.3), ncol = 2) 
 
+# Calculate Power
 power.sim <- power.fn(n.sims, n, p, f, B, mu, S, alpha)
 print(power.sim)
-Sys.time()-t
 
+# ----------------------------------------------------------------------------------
+## Details of results columns:
 
-####### Comparsion ###########
-# For the above simulation settings, the MixPhenOldRegularized took 2.963578 mins
-# wheareas MixPhenNewOptimized took just 2.076434 mins.
+# sig.Y1.G: Power for detecting the genetic effect (G) on the first phenotype (Y1).
+# sig.Y2.G: Power for detecting the genetic effect (G) on the second phenotype (Y2).
 
-# One problem is still there that sometimes the resulats are giving NA values of in the result data frame.
-# This is happening for different parameter setting.
+# sig.Y1.GE: Power for detecting the gene-environment interaction effect (GE) on the first phenotype (Y1).
+# sig.Y2.GE: Power for detecting the gene-environment interaction effect (GE) on the second phenotype (Y2).
+# This measures the ability to detect the significant interaction between G and E in phenotype  
 
+# sig.Y1.GGE: Power for detecting the combined genetic and interaction effects (GGE) on the first phenotype (Y1).
+# sig.Y2.GGE: Power for detecting the combined genetic and interaction effects (GGE) on the second phenotype (Y2).
+# This assesses the joint effect of both G and GE terms on Y1 (or Y2).
+
+# sig.Y1_Y2.G: Multivariate power for detecting the joint effect of G on both phenotypes (Y1 and Y2).
+# This test is based on GEE (generalized estimating equations), which simultaneously assesses the effect of G across both phenotypes.
+
+# sig.Y1_Y2.GE: 
+# Multivariate power for detecting the gene-environment interaction effect (GE) on both phenotypes (Y1 and Y2).
+# This measures the ability to detect GE effects across both Y1 and Y2 using GEE (generalized estimating equations).
+
+# sig.Y1_Y2.GGE: ( Our proposed hypothesis)
+# Multivariate power for detecting the joint effect of both G and GE (GGE) on the two phenotypes (Y1 and Y2).
+# This is the power of the GGE test for detecting the combined genetic and interaction effects across both phenotypes using GEE (generalized estimating equations).
