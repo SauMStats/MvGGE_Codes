@@ -35,7 +35,7 @@ The **GGE test** evaluates the joint effect of the main genetic and the GxE inte
 - **Multivariate Marginal Genetic Test (G test)**
 - **Univariate GxE Tests (univariate GxE tests)**
 - **Multivariate GxE Tests (GE test)**
-- **Univariate Joint GxE Tests (gge tests)**
+- **Univariate Joint G and GxE Tests (gge tests)**
 
 The simulation results help validate the robustness and increased power of the proposed multivariate joint testing approach in comparison to traditional methods.
 
