@@ -21,7 +21,7 @@ The codes from this repository have been converted into an R package **[MvGGE](h
 Key features:
 - Unified wrapper function `test_MvGGE()` for automatic phenotype type detection (bivariate support for mixed/binary; multi-phenotype for continuous).
 - Simulation tools to generate data under various scenarios (e.g., varying MAF, effect sizes, pleiotropy).
-- **_Note_**: _The current version of the paper supports bivariate phenotypes only._
+- **_Note_**: _The current version supports bivariate phenotypes only._
 
 This package is ideal for researchers in genetic epidemiology, biostatistics, and related fields analyzing GWAS or similar data.
 
@@ -52,7 +52,7 @@ No additional installations are required beyond these.
 ## Usage
 
 ### Quick Start
-The core function is `test_MvGGE(Y1, Y2, G, E)`, which automatically detects phenotype types and performs joint test. 
+The core function is `test_MvGGE(Y1, Y2, G, E)`, which automatically detects phenotype types and performs a joint test. 
 
 ```r
 # Simulate bivariate data (continuous Y1/Y2, binary Yb1/Yb2)
@@ -98,9 +98,6 @@ Significant: Yes  # (at 0.05)
 
 ```
 
-
-
-Please use the package from here: 👉 [**MvGGE**](https://github.com/SauMStats/MvGGE)
 
 ## License
 This project is licensed under the GPL-3 License. See the [LICENSE](https://github.com/SauMStats/MvGGE/blob/main/LICENSE) file in the main package repository.
