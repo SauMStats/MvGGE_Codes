@@ -60,7 +60,7 @@ set.seed(123)
 sim_data <- simulate_data(
   n       = 1000,            # sample size
   maf     = 0.25,            # minor allele frequency
-  f       = 0.2,             # environmental exposure pervalance
+  f       = 0.2,             # environmental exposure prevalence
   rho     = 0.2,             # correlation between continuous phenotypes (Y1, Y2)
   beta_g  = c(0.1, 0.1),     # genetic effect sizes for Y1 and Y2
   beta_e  = c(0.2, 0.2),     # environmental effect sizes for Y1 and Y2
